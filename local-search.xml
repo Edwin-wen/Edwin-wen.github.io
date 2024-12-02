@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>使用ipv6访问nas</title>
+    <link href="/2024/11/27/2024-11-27-%E4%BD%BF%E7%94%A8ipv6%E8%AE%BF%E9%97%AEnas/"/>
+    <url>/2024/11/27/2024-11-27-%E4%BD%BF%E7%94%A8ipv6%E8%AE%BF%E9%97%AEnas/</url>
+    
+    <content type="html"><![CDATA[<p>1.dns映射，找到nas的ipv6<br><a href="https://console.dnspod.cn/dns/list/detail/edwinwen.com/records">dns映射</a></p><p>2.修改本机的host文件，格式为：ipv6 域名<br>C:\Windows\System32\drivers\etc\hosts<br>刷新本机dns缓存：ipconfig &#x2F;flushdns<br>刷新chrome的dns缓存：chrome:&#x2F;&#x2F;net-internals&#x2F;#dns</p><p>3.关闭无线网卡的ipv4协议，节省流量</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>关于</title>
+    <link href="/2024/11/26/2024-11-26-%E5%85%B3%E4%BA%8E/"/>
+    <url>/2024/11/26/2024-11-26-%E5%85%B3%E4%BA%8E/</url>
+    
+    <content type="html"><![CDATA[<p>Edwin World</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>MarkDown简单语法</title>
+    <link href="/2021/01/09/MarkDown%E8%AF%AD%E6%B3%95/"/>
+    <url>/2021/01/09/MarkDown%E8%AF%AD%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<p>[toc]</p><p># 标题</p><p>## 标题二</p><p>### 标题三</p><p># 二标题</p><p><strong>加粗</strong></p><p><em>斜体</em></p><p><del>删除</del></p><p>&#96;</p><p>public void static main {</p><p>}</p><p>&#96;</p><p>`&#96;&#96;</p><p>public void main{</p><p>}</p><p>`&#96;&#96;</p><p>- 无序列表</p><p>- 啊啊</p><p>1.asdsa</p><p>2.dsad</p><p>| | |</p><p><a href="https://www.jianshu.com/p/434082e3275b">教程</a></p><p>&gt; asds</p><p>&gt;</p><p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm5qmn0nutj31520u0e7v.jpg"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>MarkDown</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>MarkDown</tag>
+      
+      <tag>网站搭建</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>
