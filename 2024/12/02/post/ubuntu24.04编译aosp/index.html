@@ -1,0 +1,799 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Edwin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="#Pixel5a最新的代码分支 设备：Pixel5a buildID: AP2A.240805.005.S4 标记tag（分支）：android-14.0.0_r75 构建目标：aosp_barbet-trunk_staging-userdebug  运行完&ldquo;lunch 构建目标&rdquo;命令的显示： &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu24.04编译aosp">
+<meta property="og:url" content="http://edwinwen.com/2024/12/02/post/ubuntu24.04%E7%BC%96%E8%AF%91aosp/index.html">
+<meta property="og:site_name" content="Edwin&#39;s blog">
+<meta property="og:description" content="#Pixel5a最新的代码分支 设备：Pixel5a buildID: AP2A.240805.005.S4 标记tag（分支）：android-14.0.0_r75 构建目标：aosp_barbet-trunk_staging-userdebug  运行完&ldquo;lunch 构建目标&rdquo;命令的显示： &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-02T08:32:00.000Z">
+<meta property="article:modified_time" content="2025-02-11T18:36:04.000Z">
+<meta property="article:author" content="Edwin">
+<meta property="article:tag" content="aosp">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>ubuntu24.04编译aosp - Edwin&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"edwinwen.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Edwin World</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ubuntu24.04编译aosp"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-12-02 16:32" pubdate>
+          2024年12月2日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">ubuntu24.04编译aosp</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <pre class="language-python"><code>#Pixel5a最新的代码分支
+设备：Pixel5a
+buildID: AP2A.240805.005.S4
+标记tag（分支）：android-14.0.0_r75
+构建目标：aosp_barbet-trunk_staging-userdebug
+
+运行完&ldquo;lunch 构建目标&rdquo;命令的显示：
+============================================
+PLATFORM_VERSION_CODENAME=VanillaIceCream
+PLATFORM_VERSION=VanillaIceCream
+PRODUCT_INCLUDE_TAGS=com.android.mainline mainline_module_prebuilt_nightly
+TARGET_PRODUCT=aosp_barbet
+TARGET_BUILD_VARIANT=userdebug
+TARGET_ARCH=arm64
+TARGET_ARCH_VARIANT=armv8-a
+TARGET_CPU_VARIANT=generic
+TARGET_2ND_ARCH=arm
+TARGET_2ND_ARCH_VARIANT=armv8-a
+TARGET_2ND_CPU_VARIANT=generic
+HOST_OS=linux
+HOST_OS_EXTRA=Linux-6.8.0-52-generic-x86_64-Ubuntu-24.04.1-LTS
+HOST_CROSS_OS=windows
+BUILD_ID=AP2A.240805.005.S4
+OUT_DIR=out
+============================================
+</code></pre>
+<p><a href="https://source.android.google.cn/docs/setup/reference/build-numbers?hl=zh-cn#build-targets" target="_blank" rel="noopener">源码分支与设备代号以及buildid</a></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 24pt;"><strong>同步代码</strong></span></p>
+<p>1.下载每月aosp更新包</p>
+<ul>
+<li><a href="https://mirrors.ustc.edu.cn/help/aosp.html" target="_blank" rel="noopener">中科大源（国内网可用）</a></li>
+<li><span style="text-decoration: line-through;"><a href="https://mirrors.tuna.tsinghua.edu.cn/help/AOSP/" target="_blank" rel="noopener">清华源（同步失败）</a></span></li>
+</ul>
+<p>2.修改源和分支</p>
+<div>
+<div>官方源：https://android.googlesource.com/platform/manifest</div>
+<div>分支：<a href="https://source.android.google.cn/docs/setup/reference/build-numbers?hl=zh-cn#source-code-tags-and-builds" target="_blank" rel="noopener">分支和版本代号映射</a></div>
+</div>
+<pre class="language-python"><code># 指定下载源和版本
+repo init -u https://mirrors.ustc.edu.cn/aosp/platform/manifest -b android-14.0.0_r75</code></pre>
+<p>3. repo sync -c &nbsp;// 同步当前分支代码 -c代表只同步当前分支，no-tag代表tag为default&nbsp; &nbsp;&nbsp;一般执行两次sync就能完整拉下来</p>
+<p>4.&nbsp;repo sync -c -j4 --fail-fast&nbsp; //从上次错误的地方继续同步</p>
+<p>&nbsp;</p>
+<p><span style="font-size: 24pt;"><strong>编译</strong></span></p>
+<p>5.准备编译环境&amp;编译</p>
+<ul>
+<li>根据文章开头的设备和buildId(AP2A.240805.005.S4)，去<a target="_blank" rel="noopener" href="https://developers.google.com/android/drivers?hl=zh-cn#cometap4a.241205.013">官方镜像和驱动</a>这里下载驱动二进制文件并解压到aosp根目录，执行安装（需要阅读许可，并输入 I ACCEPT），这一步会解压驱动到根目录，并跟着一起构建进镜像中</li>
+<li>&nbsp;&nbsp;给ubuntu24.04缺失的但aosp编译要用到的动态库，创建软链接
+<ul>
+<li>sudo ln -s /usr/lib/x86_64-linux-gnu/libtinfo.so.6 /usr/lib/libtinfo.so.5<br />sudo ln -s /usr/lib/x86_64-linux-gnu/libncursesw.so.6 /usr/lib/x86_64-linux-gnu/libncurses.so.5</li>
+</ul>
+</li>
+<li><a href="https://github.com/zyf419194314/aospAssisted" target="_blank" rel="noopener">下载aosp帮助脚本，执行根目录下的main.sh</a> 只编译的话执行aosp_build.sh即可</li>
+</ul>
+<p>构建到最后如果遇到<a href="/admin/Out of space? Out of inodes?">Out of space? Out of inodes?</a>，作者试过可行的是在aosp根目录建立下面的脚本，并sudo执行，怀疑是生成镜像需要root权限</p>
+<pre class="language-python"><code>#!/bin/bash
+
+<p>echo “&gt;&gt;&gt; 开始编译…”<br>export USE_CCACHE&#x3D;1<br>export CCACHE_EXEC&#x3D;&#x2F;usr&#x2F;bin&#x2F;ccache<br>export CCACHE_DIR&#x3D;$PWD&#x2F;ccache<br>ccache -M 100G</p>
+<p>source build&#x2F;envsetup.sh<br>lunch aosp_barbet-trunk_staging-userdebug<br>make -j$(nproc –all)</code></pre></p>
+<p>&nbsp;</p>
+<p>其他的一些命令</p>
+<pre class="language-python"><code># 指定编译frameworks/base
+mmm frameworks/base
+
+<h1 id="清除已生成的构建输出文件"><a href="#清除已生成的构建输出文件" class="headerlink" title="清除已生成的构建输出文件"></a>清除已生成的构建输出文件</h1><p>make clean</p>
+<h1 id="清除构建缓存"><a href="#清除构建缓存" class="headerlink" title="清除构建缓存"></a>清除构建缓存</h1><p>make clobber</p>
+<h1 id="删除已构建的目标文件和生成的镜像"><a href="#删除已构建的目标文件和生成的镜像" class="headerlink" title="删除已构建的目标文件和生成的镜像"></a>删除已构建的目标文件和生成的镜像</h1><p>rm -rf out&#x2F;</p>
+<h1 id="构建流程会自动将模拟器添加到您的路径中，如需运行模拟器，请输入以下命令"><a href="#构建流程会自动将模拟器添加到您的路径中，如需运行模拟器，请输入以下命令" class="headerlink" title="构建流程会自动将模拟器添加到您的路径中，如需运行模拟器，请输入以下命令"></a>构建流程会自动将模拟器添加到您的路径中，如需运行模拟器，请输入以下命令</h1><p>emulator</p>
+<p>#处理编译中找不到库的错误<br>ldconfig -p | grep 动态库名</p>
+<h1 id="cd-到动态库所在目录"><a href="#cd-到动态库所在目录" class="headerlink" title="cd 到动态库所在目录"></a>cd 到动态库所在目录</h1><p>cd &#x2F;usr&#x2F;lib&#x2F;x86_64-linux-gnu </p>
+<h1 id="sudo-cp-系统动态-so-编译所需要的动态库"><a href="#sudo-cp-系统动态-so-编译所需要的动态库" class="headerlink" title="sudo cp 系统动态.so 编译所需要的动态库"></a>sudo cp 系统动态.so 编译所需要的动态库</h1><p>sudo cp libncurses.so.6 libncurses.so.5<br>sudo cp libtinfo.so.6 libtinfo.so.5<br></code></pre></p>
+<ul>
+<li>
+<p>构建类型：</p>
+<p>-user： 用户版，权限受限；适用于生产环境。<br />-userdebug：用户调试版，与 &ldquo;user&rdquo; 类似，但具有 root 权限和调试功能；是进行调试时的首选编译类型。<br />-eng：工程版，具有额外调试工具的开发配置，适用于深度开发和调试</p>
+</li>
+</ul>
+<p>&nbsp;</p>
+<p><span style="font-size: 24pt;"><strong>刷入镜像</strong></span></p>
+<p>6.<a href="https://developer.android.com/tools?hl=zh-cn" target="_blank" rel="noopener">下载AndroidSDK平台工具（adb和fastboot）并配置环境变量</a>，连接手机解决adb devices和fastboot devices找不到的问题</p>
+<ul>
+<li><a href="https://juejin.cn/post/7044510352943349796" target="_blank" rel="noopener">fastboot的解决方案</a>&nbsp;需要进入fastboot模式然后再lsusb查看设备号，和未进入fastboot的不同</li>
+<li><a href="https://gist.github.com/smac89/251368c8df2ccd645baedc3e1238fdb4" target="_blank" rel="noopener">adb的解决方案</a></li>
+</ul>
+<p>7.解锁BootLoader</p>
+<ul>
+<li><span data-v-2505e99a="">1.&nbsp;开启开发者选项</span></li>
+</ul>
+<p data-v-2505e99a="" data-v-5b474d2a=""><span data-v-2505e99a="">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;设置&mdash;&mdash;关于手机&mdash;&mdash;版本号，连续点击7次可进入开发者模式</span></p>
+<ul>
+<li><span data-v-2505e99a="">2.&nbsp;开启 USB 调试和解锁OEM</span></li>
+</ul>
+<p data-v-2505e99a="" data-v-5b474d2a=""><span data-v-2505e99a="">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 开发者模式中允许 USB 调试、允许 OEM 解锁两个选项勾选</span></p>
+<pre class="language-python"><code>adb devices
+#进入fastboot模式
+adb reboot bootloader
+fastboot devices
+# 解锁bl
+fastboot flashing unlock</code></pre>
+<p data-v-2505e99a="" data-v-5b474d2a="">&nbsp;</p>
+<p data-v-2505e99a="" data-v-5b474d2a=""><span style="font-size: 14pt;"><strong>刷个官方镜像先，避免变砖</strong></span></p>
+<p data-v-2505e99a="" data-v-5b474d2a="">8.去官网下载本地编译同版本的镜像，用开头的设备，分支，build确定下哪个版本</p>
+<ul>
+<li><a href="https://developers.google.com/android/drivers?hl=zh-cn#cometap4a.241205.013" target="_blank" rel="noopener">官方镜像和驱动</a></li>
+</ul>
+<p data-v-2505e99a="" data-v-5b474d2a="">9.解压官方镜像，进入目录找到flash-all.sh</p>
+<ul>
+<li>adb reboot bootloader进入fastboot模式，运行flash-all.sh</li>
+</ul>
+<p>&nbsp;</p>
+<p>10.刷入本地编译好的镜像</p>
+<pre class="language-python"><code>cd aosp根目录
+# flashall会从ANDROID_PRODUCT_OUT读取镜像，所以指定一下镜像位置
+export ANDROID_PRODUCT_OUT=$PWD/out/target/product/barbet
+#进入fastboot
+adb reboot bootloader
+#刷入镜像
+fastboot flashall -w</code></pre>
+<p>&nbsp;</p>
+<p>参考资料：</p>
+<p>&nbsp; 官方一些地址：</p>
+<ul>
+<li><a href="https://source.android.google.cn/docs/setup/reference/build-numbers?hl=zh-cn#build-targets" target="_blank" rel="noopener">设备代号buildID</a></li>
+<li><a href="https://source.android.google.cn/docs/setup/build/building?hl=zh-cn" target="_blank" rel="noopener">官方构建流程</a></li>
+<li><a href="https://developers.google.com/android/drivers?hl=zh-cn#cometap4a.241205.013" target="_blank" rel="noopener">官方镜像和驱动</a></li>
+</ul>
+<p><a href="https://kdsunset.top/ubaosp13/index.html" target="_blank" rel="noopener">完整教程</a></p>
+<p><a href="https://blog.csdn.net/g241893312/article/details/128224109" target="_blank" rel="noopener">烧录相关</a></p>
+<p><a href="https://www.bilibili.com/opus/792430296813273091" target="_blank" rel="noopener">Pixels刷机</a></p>
+<p><a href="https://www.bilibili.com/opus/792430296813273091" target="_blank" rel="noopener">解锁BL</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/aosp/" class="print-no-link">#aosp</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ubuntu24.04编译aosp</div>
+      <div>http://edwinwen.com/2024/12/02/post/ubuntu24.04编译aosp/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Edwin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年12月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/03/09/post/1231232/" title="1231232">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">1231232</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/11/27/post/%E4%BD%BF%E7%94%A8ipv6%E8%AE%BF%E9%97%AEnas/" title="使用ipv6访问nas">
+                        <span class="hidden-mobile">使用ipv6访问nas</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
