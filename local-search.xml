@@ -4,19 +4,6 @@
   
   
   <entry>
-    <title>Test私密</title>
-    <link href="/2026/02/11/post/Test%E7%A7%81%E5%AF%86/"/>
-    <url>/2026/02/11/post/Test%E7%A7%81%E5%AF%86/</url>
-    
-    <content type="html"><![CDATA[<p>这是一篇私密文章</p>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>ubuntu24.04编译aosp</title>
     <link href="/2024/12/02/post/ubuntu24.04%E7%BC%96%E8%AF%91aosp/"/>
     <url>/2024/12/02/post/ubuntu24.04%E7%BC%96%E8%AF%91aosp/</url>
@@ -30,19 +17,6 @@
       <tag>aosp</tag>
       
     </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>使用ipv6访问nas</title>
-    <link href="/2024/11/27/post/%E4%BD%BF%E7%94%A8ipv6%E8%AE%BF%E9%97%AEnas/"/>
-    <url>/2024/11/27/post/%E4%BD%BF%E7%94%A8ipv6%E8%AE%BF%E9%97%AEnas/</url>
-    
-    <content type="html"><![CDATA[<p>1.dns映射，找到nas的ipv6<br><a href="https://console.dnspod.cn/dns/list/detail/edwinwen.com/records">dns映射</a></p><p>2.修改本机的host文件，格式为：ipv6 域名<br>C:\Windows\System32\drivers\etc\hosts<br>刷新本机dns缓存：ipconfig &#x2F;flushdns<br>刷新chrome的dns缓存：chrome:&#x2F;&#x2F;net-internals&#x2F;#dns</p><p>3.关闭无线网卡的ipv4协议，节省流量</p>]]></content>
-    
-    
     
   </entry>
   
